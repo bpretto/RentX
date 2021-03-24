@@ -9,8 +9,8 @@ class CreateCategoryUseCase {
     // eslint-disable-next-line prettier/prettier
     constructor(private categoriesRepository: ICategoriesRepository) { }
 
-    execute({ name, description }: IRequest): void {
-        const categoryAlreadyExists = this.categoriesRepository.findByName(
+    async execute({ name, description }: IRequest): Promise<void> {
+        const categoryAlreadyExists = await this.categoriesRepository.findByName(
             name
         );
 
