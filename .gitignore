@@ -6,3 +6,4 @@ coverage
 .env
 dist
 ormconfig.json
+docker-compose.yml
