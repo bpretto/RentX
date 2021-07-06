@@ -5,17 +5,19 @@ import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
+import upload from "@config/upload";
 import { AppError } from "@shared/errors/AppError";
+import rateLimiter from "@shared/infra/http/middlewares/rateLimiter";
 import createConnection from "@shared/infra/typeorm";
 import "@shared/container";
-
-import upload from "@config/upload";
 
 import SwaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 
 createConnection();
 const app = express();
+
+app.use(rateLimiter);
 
 app.use(express.json());
 
